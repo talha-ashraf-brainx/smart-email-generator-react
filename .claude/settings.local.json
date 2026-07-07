@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(env)",
+      "Bash(curl -s -i -X POST localhost:5176/api/generate -H 'content-type: application/json' -d '{\"prompt\":\"test\",\"emailType\":\"follow-up\",\"tone\":\"friendly\"}')",
+      "Bash(pkill -f \"vite --port 517\")"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-raised);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.subject {
+  font-size: 18px;
+  margin: 0;
+}
+
+.copyButton {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  padding: 6px 12px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.body p {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+}
+
+.body p:last-child {
+  margin-bottom: 0;
+}
+
+.error {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.empty {
+  color: var(--text);
+  font-style: italic;
+}
