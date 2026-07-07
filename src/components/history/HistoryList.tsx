@@ -10,7 +10,11 @@ interface HistoryListProps {
 
 export function HistoryList({ entries, onDelete, onClearAll }: HistoryListProps) {
   if (entries.length === 0) {
-    return <p className={styles.empty}>No emails generated yet. Head to Generator to create one.</p>;
+    return (
+      <div className={styles.empty}>
+        <p>No emails yet — head to Generator to compose your first one.</p>
+      </div>
+    );
   }
 
   return (

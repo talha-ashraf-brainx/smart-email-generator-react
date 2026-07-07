@@ -7,7 +7,13 @@ export function HistoryPage() {
 
   return (
     <div className={styles.page}>
-      {isLoading ? <p>Loading history…</p> : <HistoryList entries={entries} onDelete={deleteEntry} onClearAll={clearAll} />}
+      <h2 className={styles.heading}>History</h2>
+      <p className={styles.subheading}>Every email you've drafted, kept on this device.</p>
+      {isLoading ? (
+        <p className={styles.loading}>Loading history…</p>
+      ) : (
+        <HistoryList entries={entries} onDelete={deleteEntry} onClearAll={clearAll} />
+      )}
     </div>
   );
 }

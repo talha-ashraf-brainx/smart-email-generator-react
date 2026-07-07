@@ -1,13 +1,13 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .label {
@@ -18,16 +18,28 @@
 
 .textarea {
   resize: vertical;
-  min-height: 120px;
-  padding: 10px 12px;
+  min-height: 160px;
+  padding: 14px 16px;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg);
+  border-radius: 10px;
+  background: var(--bg-raised);
+  box-shadow: var(--shadow);
+  line-height: 1.5;
+  transition: border-color 0.15s ease;
+}
+
+.textarea:focus-visible {
+  border-color: var(--taupe);
+}
+
+.textarea::placeholder {
+  color: var(--taupe);
+  opacity: 0.75;
 }
 
 .row {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
@@ -36,10 +48,17 @@
 }
 
 .field select {
-  padding: 8px 10px;
+  padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg);
+  border-radius: 8px;
+  background: var(--bg-raised);
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--taupe) 50%),
+    linear-gradient(135deg, var(--taupe) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 32px;
 }
 
 .voiceRow {
@@ -51,17 +70,61 @@
 
 .submit {
   align-self: flex-start;
-  padding: 10px 20px;
+  padding: 13px 26px;
   border: none;
-  border-radius: 6px;
-  background: var(--accent);
-  color: #fff;
+  border-radius: 999px;
+  background: var(--button-bg);
+  color: var(--button-fg);
   font-weight: 600;
+  font-size: 15px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--button-bg-hover);
+}
+
+.submit:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .submit:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.examplesLabel {
+  font-size: 12px;
+  color: var(--taupe);
+}
+
+.exampleChips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.exampleChip {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: none;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-h);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.exampleChip:hover {
+  background: var(--highlight);
+  border-color: var(--tan-strong);
 }
 
 @media (max-width: 640px) {

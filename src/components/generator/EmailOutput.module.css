@@ -1,36 +1,52 @@
 .card {
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 14px;
   background: var(--bg-raised);
-  padding: 20px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
+  box-shadow: var(--shadow);
 }
 
 .header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
 }
 
 .subject {
-  font-size: 18px;
+  font-family: var(--font-letter);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
   margin: 0;
 }
 
 .copyButton {
+  align-self: flex-start;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 999px;
   background: var(--bg);
-  padding: 6px 12px;
+  padding: 6px 14px;
   font-size: 13px;
   white-space: nowrap;
+  flex: 0 0 auto;
+  transition: border-color 0.15s ease;
+}
+
+.copyButton:hover {
+  border-color: var(--tan-strong);
+}
+
+.body {
+  font-family: var(--font-letter);
+  font-size: 16px;
 }
 
 .body p {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   white-space: pre-wrap;
 }
 
@@ -39,13 +55,21 @@
 }
 
 .error {
-  color: var(--danger);
-  background: var(--danger-bg);
-  border-radius: 6px;
-  padding: 12px;
+  color: var(--brick);
+  background: var(--brick-bg);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 0;
 }
 
-.empty {
-  color: var(--text);
-  font-style: italic;
+.emptyCard {
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  padding: 40px 28px;
+  text-align: center;
+  color: var(--taupe);
+}
+
+.emptyCard p {
+  margin: 0;
 }

@@ -1,6 +1,20 @@
 .page {
-  max-width: 720px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 24px 20px 48px;
+  padding: 40px 28px 64px;
   width: 100%;
+}
+
+.heading {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.subheading {
+  margin: 0 0 28px;
+  color: var(--taupe);
+}
+
+.loading {
+  color: var(--taupe);
 }

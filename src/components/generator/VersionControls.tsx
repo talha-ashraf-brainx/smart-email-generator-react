@@ -28,14 +28,14 @@ export function VersionControls({
       <button type="button" onClick={onPrev} disabled={!canGoPrev}>
         ← Prev
       </button>
-      <span>
-        Version {versionLabel.index} of {versionLabel.total}
+      <span className={styles.versionLabel}>
+        v{versionLabel.index}/{versionLabel.total}
       </span>
       <button type="button" onClick={onNext} disabled={!canGoNext}>
         Next →
       </button>
-      <button type="button" onClick={onRegenerate} disabled={isGenerating}>
-        {isGenerating ? 'Regenerating…' : 'Regenerate'}
+      <button type="button" className={styles.regenerate} onClick={onRegenerate} disabled={isGenerating}>
+        {isGenerating ? 'Regenerating…' : '↻ Regenerate'}
       </button>
     </div>
   );

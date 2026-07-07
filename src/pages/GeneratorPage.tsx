@@ -9,6 +9,7 @@ export function GeneratorPage() {
   const { saveEntry } = useEmailHistory();
   const {
     currentEmail,
+    currentRequest,
     isGenerating,
     error,
     versionLabel,
@@ -22,9 +23,19 @@ export function GeneratorPage() {
 
   return (
     <div className={styles.page}>
-      <PromptForm onSubmit={generate} isSubmitting={isGenerating} />
-      <div className={styles.outputSection}>
-        <EmailOutput email={currentEmail} isGenerating={isGenerating} error={error} />
+      <div className={styles.column}>
+        <span className={styles.eyebrow}>Compose</span>
+        <PromptForm onSubmit={generate} isSubmitting={isGenerating} />
+      </div>
+      <div className={`${styles.column} ${styles.outputColumn}`}>
+        <span className={styles.eyebrow}>Your email</span>
+        <EmailOutput
+          email={currentEmail}
+          emailType={currentRequest?.emailType}
+          tone={currentRequest?.tone}
+          isGenerating={isGenerating}
+          error={error}
+        />
         <VersionControls
           versionLabel={versionLabel}
           canGoPrev={canGoPrev}

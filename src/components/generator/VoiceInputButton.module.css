@@ -1,27 +1,37 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 999px;
   background: var(--bg-raised);
   color: var(--text-h);
-  padding: 8px 12px;
+  padding: 8px 14px;
   font-size: 14px;
   white-space: nowrap;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.button:hover {
+  border-color: var(--tan-strong);
 }
 
 .button.listening {
-  border-color: var(--accent-border);
-  background: var(--accent-bg);
-  color: var(--accent);
+  border-color: var(--tan-strong);
+  background: var(--highlight);
 }
 
 .dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: currentColor;
+  background: var(--brick);
 }
 
 .listening .dot {
@@ -34,11 +44,19 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.3;
+    opacity: 0.35;
   }
 }
 
+.interim {
+  margin: 0;
+  font-size: 13px;
+  color: var(--taupe);
+  font-style: italic;
+}
+
 .error {
-  color: var(--danger);
+  margin: 0;
+  color: var(--brick);
   font-size: 13px;
 }

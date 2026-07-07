@@ -11,6 +11,34 @@ interface PromptFormProps {
   isSubmitting: boolean;
 }
 
+interface Example {
+  label: string;
+  prompt: string;
+  emailType: EmailType;
+  tone: Tone;
+}
+
+const EXAMPLES: Example[] = [
+  {
+    label: 'Follow up on a project',
+    prompt: 'Follow up with my manager about the status of the Q3 report I submitted last week.',
+    emailType: 'follow-up',
+    tone: 'friendly',
+  },
+  {
+    label: 'Apologize for a delay',
+    prompt: "Apologize to a client for a delayed delivery and let them know we're fixing it.",
+    emailType: 'apology',
+    tone: 'formal',
+  },
+  {
+    label: 'Say thank you',
+    prompt: 'Thank a colleague for covering my shift on short notice.',
+    emailType: 'thank-you',
+    tone: 'friendly',
+  },
+];
+
 export function PromptForm({ onSubmit, isSubmitting }: PromptFormProps) {
   const [prompt, setPrompt] = useState('');
   const [emailType, setEmailType] = useState<EmailType>('follow-up');
@@ -23,6 +51,12 @@ export function PromptForm({ onSubmit, isSubmitting }: PromptFormProps) {
     event.preventDefault();
     if (!prompt.trim()) return;
     onSubmit({ prompt: prompt.trim(), emailType, tone });
+  }
+
+  function applyExample(example: Example) {
+    setPrompt(example.prompt);
+    setEmailType(example.emailType);
+    setTone(example.tone);
   }
 
   return (
@@ -62,6 +96,22 @@ export function PromptForm({ onSubmit, isSubmitting }: PromptFormProps) {
       <button type="submit" className={styles.submit} disabled={isSubmitting || !prompt.trim()}>
         {isSubmitting ? 'Generating…' : 'Generate email'}
       </button>
+
+      <div className={styles.examples}>
+        <span className={styles.examplesLabel}>Not sure where to start?</span>
+        <div className={styles.exampleChips}>
+          {EXAMPLES.map((example) => (
+            <button
+              key={example.label}
+              type="button"
+              className={styles.exampleChip}
+              onClick={() => applyExample(example)}
+            >
+              {example.label}
+            </button>
+          ))}
+        </div>
+      </div>
     </form>
   );
 }

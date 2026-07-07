@@ -1,6 +1,6 @@
 .header {
   border-bottom: 1px solid var(--border);
-  padding: 16px 24px;
+  padding: 18px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,27 +8,59 @@
   flex-wrap: wrap;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.seal {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--button-bg);
+  color: var(--button-fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-letter);
+  font-weight: 600;
+  font-size: 17px;
+  flex: 0 0 auto;
+}
+
 .title {
-  font-size: 20px;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav {
   display: flex;
-  gap: 8px;
+  gap: 4px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px;
 }
 
 .nav button {
-  border: 1px solid transparent;
-  border-radius: 6px;
+  border: none;
+  border-radius: 999px;
   background: none;
-  padding: 8px 14px;
+  padding: 7px 16px;
   font-size: 14px;
   color: var(--text);
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .nav button.active {
-  border-color: var(--border);
-  background: var(--bg-raised);
-  color: var(--text-h);
+  background: var(--button-bg);
+  color: var(--button-fg);
   font-weight: 600;
 }

@@ -13,7 +13,7 @@ export function VoiceInputButton({ onFinalResult }: VoiceInputButtonProps) {
   }
 
   return (
-    <div>
+    <div className={styles.wrap}>
       <button
         type="button"
         className={`${styles.button} ${isListening ? styles.listening : ''}`}
@@ -24,7 +24,7 @@ export function VoiceInputButton({ onFinalResult }: VoiceInputButtonProps) {
         <span className={styles.dot} aria-hidden="true" />
         {isListening ? 'Listening…' : 'Speak'}
       </button>
-      {isListening && interimTranscript && <p>{interimTranscript}</p>}
+      {isListening && interimTranscript && <p className={styles.interim}>{interimTranscript}</p>}
       {error && <p className={styles.error}>{error}</p>}
     </div>
   );

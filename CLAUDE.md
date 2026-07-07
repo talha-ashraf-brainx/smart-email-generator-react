@@ -11,15 +11,21 @@ in production; the API is mounted inside the Vite dev server during development.
 - `src/components/<domain>/Name.tsx` — reusable UI, grouped by domain (`generator/`,
   `history/`, `layout/`). Colocate `Name.module.css` next to the component when it
   needs scoped styles.
+- `src/components/common/Name.tsx` — presentational UI shared across two or more
+  domains (e.g. `Stamp.tsx`, used by both `generator/` and `history/`). Don't put
+  domain-specific components here just because they feel reusable in theory — only
+  move something into `common/` once a second domain actually imports it.
 - `src/pages/NamePage.tsx` — top-level views, registered in `App.tsx`'s route switch
   (driven by `useHashRoute`).
 - `src/hooks/useX.ts` — reusable stateful logic. If a component's logic exceeds ~150
   lines, extract a hook.
 - `src/lib/api/*` — the ONLY place `fetch()` may be called. No inline `fetch` calls
   in components/pages/hooks.
-- `src/lib/storage/*` — the ONLY place `localStorage` may be touched, always behind
-  the `HistoryStorageAdapter` interface. Import the shared `historyStorage` singleton
-  from `getHistoryStorage.ts`, never call `localStorage.getItem/setItem` elsewhere.
+- `src/lib/storage/*` — the ONLY place `localStorage` may be touched. Email history
+  goes through the `HistoryStorageAdapter` interface (import the shared `historyStorage`
+  singleton from `getHistoryStorage.ts`); simpler standalone preferences (e.g.
+  `themePreference.ts`) can be their own small get/set module. Never call
+  `localStorage.getItem/setItem` outside this folder.
 - `src/types/*.ts` — all domain types (`EmailType`, `Tone`, `GeneratedEmail`,
   `HistoryEntry`, request/response shapes). Do not duplicate ad-hoc inline object
   shapes across files.
@@ -55,10 +61,15 @@ in production; the API is mounted inside the Vite dev server during development.
 
 ## Styling
 
-- Global tokens/reset live only in `src/index.css` (the `prefers-color-scheme`
-  CSS-variable theme system: `--bg`, `--text`, `--accent`, etc.). Do not add a JS
-  theme toggle without discussing first — the app intentionally follows the OS/browser
-  theme.
+- Global tokens/reset live only in `src/index.css`. Light is the default and is
+  defined on plain `:root`; dark is opt-in only, defined under `:root[data-theme='dark']`
+  and applied by `useTheme.ts` (persisted via `src/lib/storage/themePreference.ts`).
+  The app does NOT follow OS `prefers-color-scheme` — this was a deliberate reversal
+  of an earlier "OS-only" design, so don't reintroduce a `prefers-color-scheme` media
+  query as the source of truth without discussing first.
+- The inline script in `index.html` reads the same `smart-email-generator:theme`
+  localStorage key before React mounts, purely to avoid a flash of the wrong theme on
+  reload. Keep its key in sync with `themePreference.ts` if that key ever changes.
 - All other styling is CSS Modules, mobile-first. When adding a breakpoint, prefer
   the existing `640px` convention unless a component genuinely needs another.
 - No CSS framework/UI kit is installed. Do not add one without updating this file.

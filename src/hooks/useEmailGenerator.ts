@@ -4,6 +4,7 @@ import { postGenerateEmail } from '../lib/api/generateEmail.ts';
 
 export interface UseEmailGeneratorResult {
   currentEmail: GeneratedEmail | null;
+  currentRequest: GenerateEmailRequest | null;
   isGenerating: boolean;
   error: string | null;
   versionLabel: { index: number; total: number };
@@ -71,6 +72,7 @@ export function useEmailGenerator(
 
   return {
     currentEmail: session ? session.versions[session.currentIndex] : null,
+    currentRequest: session?.request ?? null,
     isGenerating,
     error,
     versionLabel: { index: (session?.currentIndex ?? 0) + 1, total: session?.versions.length ?? 0 },

@@ -1,19 +1,39 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .controls button {
   border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg);
-  padding: 6px 12px;
-  font-size: 14px;
+  border-radius: 999px;
+  background: var(--bg-raised);
+  padding: 7px 14px;
+  font-size: 13px;
+  transition: border-color 0.15s ease;
+}
+
+.controls button:hover:not(:disabled) {
+  border-color: var(--tan-strong);
 }
 
 .controls button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
+}
+
+.versionLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--taupe);
+  padding: 0 4px;
+}
+
+.regenerate {
+  margin-left: auto;
+  background: var(--bg-raised);
+  font-weight: 600;
+  color: var(--text-h);
 }

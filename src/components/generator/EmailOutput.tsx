@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import type { GeneratedEmail } from '../../types/email.ts';
+import { EMAIL_TYPE_OPTIONS, TONE_OPTIONS } from '../../types/email.ts';
+import { Stamp } from '../common/Stamp.tsx';
 import styles from './EmailOutput.module.css';
 
 interface EmailOutputProps {
   email: GeneratedEmail | null;
+  emailType?: string;
+  tone?: string;
   isGenerating: boolean;
   error: string | null;
 }
 
-export function EmailOutput({ email, isGenerating, error }: EmailOutputProps) {
+export function EmailOutput({ email, emailType, tone, isGenerating, error }: EmailOutputProps) {
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
@@ -19,30 +23,42 @@ export function EmailOutput({ email, isGenerating, error }: EmailOutputProps) {
   }
 
   if (error) {
-    return <p className={styles.error}>{error}</p>;
+    return <p className={styles.error}>Couldn't generate your email: {error}</p>;
   }
 
   if (isGenerating && !email) {
-    return <p className={styles.empty}>Generating your email…</p>;
+    return (
+      <div className={styles.emptyCard}>
+        <p>Drafting your email…</p>
+      </div>
+    );
   }
 
   if (!email) {
-    return <p className={styles.empty}>Your generated email will appear here.</p>;
+    return (
+      <div className={styles.emptyCard}>
+        <p>Nothing drafted yet — describe what you need and it'll appear here.</p>
+      </div>
+    );
   }
+
+  const typeLabel = EMAIL_TYPE_OPTIONS.find((option) => option.value === emailType)?.label ?? emailType ?? '';
+  const toneLabel = TONE_OPTIONS.find((option) => option.value === tone)?.label ?? tone ?? '';
 
   return (
     <div className={styles.card}>
       <div className={styles.header}>
         <h2 className={styles.subject}>{email.subject}</h2>
-        <button type="button" className={styles.copyButton} onClick={handleCopy}>
-          {copied ? 'Copied!' : 'Copy'}
-        </button>
+        {typeLabel && toneLabel && <Stamp typeLabel={typeLabel} toneLabel={toneLabel} animate />}
       </div>
       <div className={styles.body}>
         {email.body.split('\n\n').map((paragraph, index) => (
           <p key={index}>{paragraph}</p>
         ))}
       </div>
+      <button type="button" className={styles.copyButton} onClick={handleCopy}>
+        {copied ? 'Copied!' : 'Copy to clipboard'}
+      </button>
     </div>
   );
 }

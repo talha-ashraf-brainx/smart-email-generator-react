@@ -1,24 +1,37 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --bg-raised: #f9f9fb;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --danger: #d1293d;
-  --danger-bg: rgba(209, 41, 61, 0.1);
+  /* Warm stationery palette */
+  --cream: #eeedeb;
+  --paper: var(--cream);
+  --tan: #e0ccbe;
+  --tan-strong: #d3b6a3;
+  --taupe: #747264;
+  --espresso: #3c3633;
+  --espresso-strong: #2a2523;
+  --border: #ded9d0;
+  --brick: #9c4a3c;
+  --brick-bg: rgba(156, 74, 60, 0.1);
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    rgba(60, 54, 51, 0.1) 0 10px 24px -8px, rgba(60, 54, 51, 0.06) 0 2px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* Semantic aliases used throughout components */
+  --bg: var(--cream);
+  --bg-raised: var(--paper);
+  --text: var(--taupe);
+  --text-h: var(--espresso);
+  --highlight: var(--tan);
+  --highlight-strong: var(--tan-strong);
+  --button-bg: var(--espresso);
+  --button-bg-hover: var(--espresso-strong);
+  --button-fg: var(--cream);
 
-  font: 16px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
+  --font-display: 'Familjen Grotesk', system-ui, 'Segoe UI', sans-serif;
+  --font-body: 'Familjen Grotesk', system-ui, 'Segoe UI', sans-serif;
+  --font-letter: 'Fraunces', 'Iowan Old Style', serif;
+  --font-mono: 'Space Mono', ui-monospace, Consolas, monospace;
+
+  font: 16px/145% var(--font-body);
+  letter-spacing: 0.1px;
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -27,22 +40,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --bg-raised: #1c1d25;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --danger: #f16375;
-    --danger-bg: rgba(241, 99, 117, 0.15);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* Light is the default regardless of OS preference — dark is opt-in only,
+   toggled via ThemeToggle and applied through this attribute. */
+:root[data-theme='dark'] {
+  --cream: #201b18;
+  --paper: #2a2420;
+  --tan: #4a3d33;
+  --tan-strong: #5c4c3f;
+  --taupe: #b6ac9f;
+  --espresso: #f3ede6;
+  --espresso-strong: #ffffff;
+  --border: #3a332d;
+  --brick: #d98a78;
+  --brick-bg: rgba(217, 138, 120, 0.15);
+  --shadow:
+    rgba(0, 0, 0, 0.45) 0 10px 24px -8px, rgba(0, 0, 0, 0.3) 0 2px 6px -2px;
+  color-scheme: dark;
 }
 
 * {
@@ -62,7 +75,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--sans);
+  font-family: var(--font-display);
   font-weight: 600;
   color: var(--text-h);
   margin: 0;
@@ -85,6 +98,16 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--espresso);
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

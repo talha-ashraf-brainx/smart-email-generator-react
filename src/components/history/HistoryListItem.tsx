@@ -1,5 +1,6 @@
 import { EMAIL_TYPE_OPTIONS, TONE_OPTIONS } from '../../types/email.ts';
 import type { HistoryEntry } from '../../types/history.ts';
+import { Stamp } from '../common/Stamp.tsx';
 import styles from './HistoryListItem.module.css';
 
 interface HistoryListItemProps {
@@ -15,16 +16,20 @@ export function HistoryListItem({ entry, onDelete }: HistoryListItemProps) {
     <li className={styles.item}>
       <div className={styles.top}>
         <h3 className={styles.subject}>{entry.subject}</h3>
-        <button type="button" className={styles.deleteButton} onClick={() => onDelete(entry.id)}>
-          Delete
+        <button
+          type="button"
+          className={styles.deleteButton}
+          onClick={() => onDelete(entry.id)}
+          aria-label={`Delete "${entry.subject}"`}
+        >
+          ×
         </button>
       </div>
-      <div className={styles.meta}>
-        <span className={styles.badge}>{typeLabel}</span>
-        <span className={styles.badge}>{toneLabel}</span>
-        <span className={styles.date}>{new Date(entry.createdAt).toLocaleString()}</span>
-      </div>
       <p className={styles.prompt}>{entry.prompt}</p>
+      <div className={styles.footer}>
+        <Stamp typeLabel={typeLabel} toneLabel={toneLabel} size="small" />
+        <span className={styles.date}>{new Date(entry.createdAt).toLocaleDateString()}</span>
+      </div>
     </li>
   );
 }
