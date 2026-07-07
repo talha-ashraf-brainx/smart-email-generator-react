@@ -26,6 +26,9 @@
 }
 
 .clearButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: none;
   background: none;
   color: var(--brick);
@@ -38,4 +41,10 @@
 
 .clearButton:hover {
   text-decoration-color: var(--brick);
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
 }

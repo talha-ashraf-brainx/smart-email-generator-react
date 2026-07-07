@@ -1,22 +1,23 @@
 :root {
   /* Warm stationery palette */
-  --cream: #eeedeb;
-  --paper: var(--cream);
-  --tan: #e0ccbe;
-  --tan-strong: #d3b6a3;
-  --taupe: #747264;
-  --espresso: #3c3633;
-  --espresso-strong: #2a2523;
-  --border: #ded9d0;
-  --brick: #9c4a3c;
-  --brick-bg: rgba(156, 74, 60, 0.1);
+  --cream: #ece0cd;
+  --paper: #ffffff;
+  --tan: #e8d4b3;
+  --tan-strong: #d1af86;
+  --taupe: #6b6154;
+  --ink: #46403a;
+  --espresso: #241f1a;
+  --espresso-strong: #120f0d;
+  --border: #96754a;
+  --brick: #a3402c;
+  --brick-bg: rgba(163, 64, 44, 0.1);
   --shadow:
-    rgba(60, 54, 51, 0.1) 0 10px 24px -8px, rgba(60, 54, 51, 0.06) 0 2px 6px -2px;
+    rgba(36, 30, 24, 0.18) 0 12px 28px -10px, rgba(36, 30, 24, 0.1) 0 3px 8px -2px;
 
   /* Semantic aliases used throughout components */
   --bg: var(--cream);
   --bg-raised: var(--paper);
-  --text: var(--taupe);
+  --text: var(--ink);
   --text-h: var(--espresso);
   --highlight: var(--tan);
   --highlight-strong: var(--tan-strong);
@@ -43,18 +44,19 @@
 /* Light is the default regardless of OS preference — dark is opt-in only,
    toggled via ThemeToggle and applied through this attribute. */
 :root[data-theme='dark'] {
-  --cream: #201b18;
-  --paper: #2a2420;
-  --tan: #4a3d33;
-  --tan-strong: #5c4c3f;
-  --taupe: #b6ac9f;
-  --espresso: #f3ede6;
+  --cream: #14100d;
+  --paper: #362b22;
+  --tan: #493c2c;
+  --tan-strong: #5f4e37;
+  --taupe: #ab9f8c;
+  --ink: #efe6d8;
+  --espresso: #faf4ea;
   --espresso-strong: #ffffff;
-  --border: #3a332d;
-  --brick: #d98a78;
-  --brick-bg: rgba(217, 138, 120, 0.15);
+  --border: #8a7047;
+  --brick: #e2916c;
+  --brick-bg: rgba(226, 145, 108, 0.18);
   --shadow:
-    rgba(0, 0, 0, 0.45) 0 10px 24px -8px, rgba(0, 0, 0, 0.3) 0 2px 6px -2px;
+    rgba(0, 0, 0, 0.55) 0 12px 28px -10px, rgba(0, 0, 0, 0.35) 0 3px 8px -2px;
   color-scheme: dark;
 }
 

@@ -6,21 +6,42 @@
 }
 
 .controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--bg-raised);
   padding: 7px 14px;
   font-size: 13px;
-  transition: border-color 0.15s ease;
+  color: var(--text-h);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .controls button:hover:not(:disabled) {
   border-color: var(--tan-strong);
+  background: var(--highlight);
 }
 
 .controls button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .versionLabel {

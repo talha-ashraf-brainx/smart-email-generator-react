@@ -15,6 +15,7 @@
 }
 
 .seal {
+  position: relative;
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -27,6 +28,18 @@
   font-weight: 600;
   font-size: 17px;
   flex: 0 0 auto;
+}
+
+.seal::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brick);
+  box-shadow: 0 0 0 2px var(--bg);
 }
 
 .title {

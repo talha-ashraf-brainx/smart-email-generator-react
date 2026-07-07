@@ -57,6 +57,16 @@ export function EmailOutput({ email, emailType, tone, isGenerating, error }: Ema
         ))}
       </div>
       <button type="button" className={styles.copyButton} onClick={handleCopy}>
+        {copied ? (
+          <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        ) : (
+          <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2" strokeLinejoin="round" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15V6a2 2 0 012-2h9" />
+          </svg>
+        )}
         {copied ? 'Copied!' : 'Copy to clipboard'}
       </button>
     </div>
