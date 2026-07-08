@@ -15,6 +15,33 @@
   color: var(--taupe);
 }
 
-.loading {
-  color: var(--taupe);
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.skeletonCard {
+  height: 148px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(100deg, var(--bg-raised) 30%, var(--highlight) 50%, var(--bg-raised) 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonCard {
+    animation: none;
+    background: var(--highlight);
+  }
 }

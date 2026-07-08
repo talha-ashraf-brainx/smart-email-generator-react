@@ -9,6 +9,9 @@ import styles from './PromptForm.module.css';
 interface PromptFormProps {
   onSubmit: (request: GenerateEmailRequest) => void;
   isSubmitting: boolean;
+  initialPrompt?: string;
+  initialEmailType?: EmailType;
+  initialTone?: Tone;
 }
 
 interface Example {
@@ -39,10 +42,16 @@ const EXAMPLES: Example[] = [
   },
 ];
 
-export function PromptForm({ onSubmit, isSubmitting }: PromptFormProps) {
-  const [prompt, setPrompt] = useState('');
-  const [emailType, setEmailType] = useState<EmailType>('follow-up');
-  const [tone, setTone] = useState<Tone>('friendly');
+export function PromptForm({
+  onSubmit,
+  isSubmitting,
+  initialPrompt = '',
+  initialEmailType = 'follow-up',
+  initialTone = 'friendly',
+}: PromptFormProps) {
+  const [prompt, setPrompt] = useState(initialPrompt);
+  const [emailType, setEmailType] = useState<EmailType>(initialEmailType);
+  const [tone, setTone] = useState<Tone>(initialTone);
   const promptId = useId();
   const typeId = useId();
   const toneId = useId();

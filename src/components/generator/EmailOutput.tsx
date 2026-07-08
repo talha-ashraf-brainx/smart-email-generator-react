@@ -28,7 +28,8 @@ export function EmailOutput({ email, emailType, tone, isGenerating, error }: Ema
 
   if (isGenerating && !email) {
     return (
-      <div className={styles.emptyCard}>
+      <div className={`${styles.emptyCard} ${styles.drafting}`}>
+        <span className={styles.draftingDot} aria-hidden="true" />
         <p>Drafting your email…</p>
       </div>
     );
@@ -46,7 +47,7 @@ export function EmailOutput({ email, emailType, tone, isGenerating, error }: Ema
   const toneLabel = TONE_OPTIONS.find((option) => option.value === tone)?.label ?? tone ?? '';
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} key={`${email.generatedAt}-${email.subject}`}>
       <div className={styles.header}>
         <h2 className={styles.subject}>{email.subject}</h2>
         {typeLabel && toneLabel && <Stamp typeLabel={typeLabel} toneLabel={toneLabel} animate />}

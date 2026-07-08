@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import type { GenerateEmailRequest, GeneratedEmail, GenerationSession } from '../types/email.ts';
+import type { HistoryEntry } from '../types/history.ts';
 import { postGenerateEmail } from '../lib/api/generateEmail.ts';
 
 export interface UseEmailGeneratorResult {
@@ -14,6 +15,7 @@ export interface UseEmailGeneratorResult {
   regenerate: () => Promise<void>;
   goPrev: () => void;
   goNext: () => void;
+  loadEntry: (entry: HistoryEntry) => void;
 }
 
 export function useEmailGenerator(
@@ -70,6 +72,15 @@ export function useEmailGenerator(
     );
   }, []);
 
+  const loadEntry = useCallback((entry: HistoryEntry) => {
+    setError(null);
+    setSession({
+      request: { prompt: entry.prompt, emailType: entry.emailType, tone: entry.tone },
+      versions: [{ subject: entry.subject, body: entry.body, model: entry.model, generatedAt: entry.createdAt }],
+      currentIndex: 0,
+    });
+  }, []);
+
   return {
     currentEmail: session ? session.versions[session.currentIndex] : null,
     currentRequest: session?.request ?? null,
@@ -82,5 +93,6 @@ export function useEmailGenerator(
     regenerate,
     goPrev,
     goNext,
+    loadEntry,
   };
 }

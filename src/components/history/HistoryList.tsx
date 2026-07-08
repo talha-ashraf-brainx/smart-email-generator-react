@@ -6,9 +6,10 @@ interface HistoryListProps {
   entries: HistoryEntry[];
   onDelete: (id: string) => void;
   onClearAll: () => void;
+  onSelect: (entry: HistoryEntry) => void;
 }
 
-export function HistoryList({ entries, onDelete, onClearAll }: HistoryListProps) {
+export function HistoryList({ entries, onDelete, onClearAll, onSelect }: HistoryListProps) {
   if (entries.length === 0) {
     return (
       <div className={styles.empty}>
@@ -30,7 +31,7 @@ export function HistoryList({ entries, onDelete, onClearAll }: HistoryListProps)
       </div>
       <ul className={styles.list}>
         {entries.map((entry) => (
-          <HistoryListItem key={entry.id} entry={entry} onDelete={onDelete} />
+          <HistoryListItem key={entry.id} entry={entry} onDelete={onDelete} onSelect={onSelect} />
         ))}
       </ul>
     </div>

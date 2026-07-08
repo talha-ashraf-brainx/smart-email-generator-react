@@ -7,6 +7,18 @@
   flex-direction: column;
   gap: 18px;
   box-shadow: var(--shadow);
+  animation: cardIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header {
@@ -83,4 +95,37 @@
 
 .emptyCard p {
   margin: 0;
+}
+
+.drafting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.draftingDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--brick);
+  animation: pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draftingDot {
+    animation: none;
+  }
 }
